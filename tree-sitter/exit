@@ -1,0 +1,46 @@
+[m]133;A\[92mcyp:~[96m> [22;1;32mcd[22;39m [36m~/repos/gct/tree-sitter
+[m]133;A;k=s\[32mgcc[39m [22;1;32m-o[22;39m [22;1;32mgct.so[22;39m [22;1;32m-shared[22;39m [22;1;32m-fPIC[22;39m [22;1;32m-O2[22;39m [22;1;32m-I./src[22;39m [22;1;32msrc/parser.c
+[m]133;A;k=s\[22;1;32mcp[22;39m [22;1;36mgct.so[22;39m [22;1;36m~/.local/share/nvim/lazy/nvim-treesitter/parser/
+[m]133;A\[92mcyp:~/repos/gct/tree-sitter[96m> [22;1;32mfind[22;39m [32m~/.local/share/nvim[39m [22;1;34m-name[22;39m [32m"*.so"[39m [22;1;35m|[22;39m [32mhead[39m [22;1;32m-5
+[m]133;C\Error: [31mnu::parser::unknown_flag
+
+[m  [31m×[39m The `find` command doesn't have flag `-a`.
+[m   ╭─[[22;1;36;4mrepl_entry #2:1:28[22;39;24m]
+[m [22;2m1[22m │ find ~/.local/share/nvim -name "*.so" | head -5
+[m   · [22;1;35m                           ┬
+[m   ·                            [22;1;35m╰── unknown flag
+[m   ╰────
+[m[36m  help: [39mUse `--help` to see available flags
+
+[m]133;A\[92mcyp:~/repos/gct/tree-sitter[96m> [32mzsh
+[m]133;C\tree-sitter % [32mfind[39m [4m~/.local/share/nvim[24m -name [33m"*.so"[39m | [32mhead[39m -5
+[m/home/cyp/.local/share/nvim/neo-tree-trash/1772400669_zig-out/lib/libreglynx.so
+[m/home/cyp/.local/share/nvim/mason/packages/netcoredbg/libexec/netcoredbg/libdbgshim.so
+[m/home/cyp/.local/share/nvim/mason/packages/kotlin-lsp/native/libfilewatcher_jni.so
+[m/home/cyp/.local/share/nvim/mason/packages/kotlin-lsp/jre/lib/libzip.so
+[m/home/cyp/.local/share/nvim/mason/packages/kotlin-lsp/jre/lib/libjaas.so
+[mtree-sitter % 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

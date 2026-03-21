@@ -1,0 +1,8 @@
+tag sports
+tag personal
+tag home 
+
+composite football = #sports #personal
+
+attribute intensity number
+composite sunday_workout = #football @intensity=5
