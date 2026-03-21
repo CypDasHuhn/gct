@@ -7,7 +7,7 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 module.exports = grammar({
-  name: "tree_sitter_gct",
+  name: "gct",
   rules: {
     source_file: $ => repeat1($.element),
     element: $ => choice(
