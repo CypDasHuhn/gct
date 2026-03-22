@@ -6,3 +6,15 @@ composite football = #sports #personal
 
 attribute intensity number
 composite sunday_workout = #football @intensity=5
+
+# Single line comment
+
+### 
+multi line content
+
+asd
+###
+
+attribute name text
+composite george = @name=george
+composite longer = @name="george georgison"

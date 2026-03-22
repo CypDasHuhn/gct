@@ -10,7 +10,8 @@ module.exports = grammar({
   name: "gct",
   rules: {
     source_file: ($) => repeat1($.element),
-    element: ($) =>
+    element: ($) => choice($.decleration, $.comment),
+    decleration: ($) =>
       choice(
         $.tag_declaration,
         $.composite_declaration,
@@ -45,5 +46,13 @@ module.exports = grammar({
     time: (_) => /[0-9]{2}:[0-9]{2}(:[0-9]{2})?/,
     datetime: (_) => /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(:[0-9]{2})?/,
     // endregion
+
+    comment: ($) => choice($.line_comment, $.block_comment),
+    line_comment: (_) => token(prec(-1, /##?(?:[^#\n][^\n]*)?/)),
+    block_comment: (_) => seq(
+      "###",
+      repeat(choice(/[^#]+/, seq("#", /[^#]/), seq("##", /[^#]/))),
+      "###"
+    ),
   },
 });

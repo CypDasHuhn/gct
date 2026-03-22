@@ -34,6 +34,30 @@
     }
   },
   {
+    "type": "block_comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "line_comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "composite_declaration",
     "named": true,
     "fields": {},
@@ -57,7 +81,7 @@
     }
   },
   {
-    "type": "element",
+    "type": "decleration",
     "named": true,
     "fields": {},
     "children": {
@@ -74,6 +98,25 @@
         },
         {
           "type": "tag_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "decleration",
           "named": true
         }
       ]
@@ -156,6 +199,18 @@
     }
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "##",
+    "named": false
+  },
+  {
+    "type": "###",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
@@ -177,18 +232,18 @@
   },
   {
     "type": "datetime",
-    "named": false
+    "named": true
   },
   {
     "type": "datetime",
-    "named": true
+    "named": false
   },
   {
     "type": "identifier",
     "named": true
   },
   {
-    "type": "number",
+    "type": "line_comment",
     "named": true
   },
   {
@@ -196,12 +251,16 @@
     "named": false
   },
   {
-    "type": "percentage",
+    "type": "number",
     "named": true
   },
   {
     "type": "percentage",
     "named": false
+  },
+  {
+    "type": "percentage",
+    "named": true
   },
   {
     "type": "tag",
@@ -217,10 +276,10 @@
   },
   {
     "type": "time",
-    "named": true
+    "named": false
   },
   {
     "type": "time",
-    "named": false
+    "named": true
   }
 ]
