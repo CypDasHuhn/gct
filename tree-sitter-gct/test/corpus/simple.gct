@@ -4,18 +4,23 @@ tag home
 
 composite football = #sports #personal
 
-attribute intensity number
+attribute intensity: number
 composite sunday_workout = #football @intensity=5
 
 # Single line comment
 
-### 
+###  asd
 multi line content
 
 asd
 ###
 
-attribute name text
+attribute name: text
 composite george = @name=george
 composite longer = @name="george georgison"
 
+attribute option: text where regex="left|right" 
+composite left = @name=left
+composite left = @name=right
+
+attribute quality: number where is-integer range=1..5

@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "constraint_block",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -75,6 +79,94 @@
         },
         {
           "type": "tag_reference",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constraint_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constraint_element",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constraint_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constraint_reference",
+          "named": true
+        },
+        {
+          "type": "constraint_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constraint_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constraint_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "date",
+          "named": true
+        },
+        {
+          "type": "datetime",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "percentage",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        },
+        {
+          "type": "time",
           "named": true
         }
       ]
@@ -211,6 +303,10 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
@@ -232,11 +328,11 @@
   },
   {
     "type": "datetime",
-    "named": true
+    "named": false
   },
   {
     "type": "datetime",
-    "named": false
+    "named": true
   },
   {
     "type": "identifier",
@@ -263,6 +359,10 @@
     "named": true
   },
   {
+    "type": "range",
+    "named": true
+  },
+  {
     "type": "tag",
     "named": false
   },
@@ -276,10 +376,14 @@
   },
   {
     "type": "time",
-    "named": false
+    "named": true
   },
   {
     "type": "time",
-    "named": true
+    "named": false
+  },
+  {
+    "type": "where",
+    "named": false
   }
 ]

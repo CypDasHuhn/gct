@@ -1,15 +1,19 @@
 "tag" @keyword
 "composite" @keyword
 "attribute" @keyword
+"where" @keyword
 
-(tag_declaration (identifier) @type)
-(composite_declaration (identifier) @type)
-(attribute_decleration (identifier) @type)
+(identifier) @type
 
 (tag_reference) @constant
+(attribute_reference) @constant
+"=" @operator
+":" @operator
 
-(attribute_reference) @attribute
 (type) @property
 (value) @string
+
+(constraint_reference) @constant
+(constraint_value) @string
 
 (comment) @comment

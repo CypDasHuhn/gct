@@ -3,7 +3,6 @@
  * @author CypDasHuhn <Martinfischer533@gmail.com>
  * @license MIT
  */
-
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 module.exports = grammar({
@@ -17,8 +16,7 @@ module.exports = grammar({
         $.composite_declaration,
         $.attribute_decleration,
       ),
-    identifier: (_) => /[a-zA-Z_][a-zA-Z0-9_]*/,
-
+    identifier: (_) => /[a-zA-Z_][a-zA-Z0-9_-]*/,
     tag_declaration: ($) => seq("tag", $.identifier),
     composite_declaration: ($) =>
       seq(
@@ -28,31 +26,50 @@ module.exports = grammar({
         repeat1(choice($.tag_reference, $.attribute_reference)),
       ),
     tag_reference: (_) => /\#[a-zA-Z_][a-zA-Z0-9_]*/,
-
     // region Attributes
-    attribute_decleration: ($) => seq("attribute", $.identifier, $.type),
-
+    attribute_decleration: ($) =>
+      seq("attribute", $.identifier, ":", $.type, optional($.constraint_block)),
     attribute_reference: ($) => seq(/\@[a-zA-Z_][a-zA-Z0-9_]*/, "=", $.value),
-
     type: (_) =>
       choice("number", "percentage", "text", "date", "time", "datetime"),
     value: ($) =>
       choice($.datetime, $.date, $.time, $.percentage, $.number, $.text),
-
     number: (_) => /[0-9]+(\.[0-9]+)?/,
     percentage: (_) => /[0-9]+(\.[0-9]+)?%/,
     text: (_) => choice(/[a-zA-Z0-9_]+/, /"[^"]*"/),
     date: (_) => /[0-9]{4}-[0-9]{2}-[0-9]{2}/,
     time: (_) => /[0-9]{2}:[0-9]{2}(:[0-9]{2})?/,
     datetime: (_) => /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(:[0-9]{2})?/,
+    // region Constraints
+    constraint_block: ($) => seq("where", repeat1($.constraint_element)),
+    constraint_reference: ($) => $.identifier,
+    constraint_element: ($) =>
+      choice(
+        seq($.constraint_reference, "=", $.constraint_value),
+        $.constraint_reference,
+      ),
+    // Constraint values extend normal values with the range type
+    constraint_value: ($) =>
+      choice(
+        $.range,
+        $.datetime,
+        $.date,
+        $.time,
+        $.percentage,
+        $.number,
+        $.text,
+      ),
+    // e.g. 1..5, 0.5..1.0
+    range: (_) => /[0-9]+(\.[0-9]+)?\.\.([0-9]+(\.[0-9]+)?)/,
     // endregion
-
+    // endregion
     comment: ($) => choice($.line_comment, $.block_comment),
     line_comment: (_) => token(prec(-1, /##?(?:[^#\n][^\n]*)?/)),
-    block_comment: (_) => seq(
-      "###",
-      repeat(choice(/[^#]+/, seq("#", /[^#]/), seq("##", /[^#]/))),
-      "###"
-    ),
+    block_comment: (_) =>
+      seq(
+        "###",
+        repeat(choice(/[^#]+/, seq("#", /[^#]/), seq("##", /[^#]/))),
+        "###",
+      ),
   },
 });

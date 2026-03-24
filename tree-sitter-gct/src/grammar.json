@@ -41,7 +41,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_][a-zA-Z0-9_]*"
+      "value": "[a-zA-Z_][a-zA-Z0-9_-]*"
     },
     "tag_declaration": {
       "type": "SEQ",
@@ -105,8 +105,24 @@
           "name": "identifier"
         },
         {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
           "type": "SYMBOL",
           "name": "type"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "constraint_block"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -217,6 +233,89 @@
     "datetime": {
       "type": "PATTERN",
       "value": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(:[0-9]{2})?"
+    },
+    "constraint_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "where"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "constraint_element"
+          }
+        }
+      ]
+    },
+    "constraint_reference": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "constraint_element": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "constraint_reference"
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "SYMBOL",
+              "name": "constraint_value"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "constraint_reference"
+        }
+      ]
+    },
+    "constraint_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "range"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "datetime"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "date"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "time"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "percentage"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "text"
+        }
+      ]
+    },
+    "range": {
+      "type": "PATTERN",
+      "value": "[0-9]+(\\.[0-9]+)?\\.\\.([0-9]+(\\.[0-9]+)?)"
     },
     "comment": {
       "type": "CHOICE",
